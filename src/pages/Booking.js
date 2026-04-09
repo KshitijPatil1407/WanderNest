@@ -11,7 +11,6 @@ function Booking() {
 
   const location = useLocation();
 
-  // ✅ Auto-fill destination from Packages
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     const dest = query.get("destination");
@@ -21,15 +20,32 @@ function Booking() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!name || !people || !fromDate || !toDate || !destination) {
+    const user = localStorage.getItem("usser");
+
+    if (!user) {
+      alert("⚠ Please login first");
+      return;
+    }
+
+    if (!name || !people || !fromDate || !toDate) {
       setError("⚠ Please fill all fields");
       return;
     }
 
+    const newBooking = {
+      user,
+      name,
+      fromDate,
+      toDate,
+      people,
+    };
+
+    const existing = JSON.parse(localStorage.getItem("bookings")) || [];
+    existing.push(newBooking);
+    localStorage.setItem("bookings", JSON.stringify(existing));
+
     setError("");
-    alert(
-      `Booking confirmed for ${name} to ${destination} from ${fromDate} to ${toDate} for ${people} people`
-    );
+    alert("✅ Booking saved successfully!");
   };
 
   const inputStyle = {
@@ -41,7 +57,7 @@ function Booking() {
     backgroundColor: "#0f172a",
     color: "white",
     boxSizing: "border-box",
-    outline: "none",
+    outline: "none"
   };
 
   const labelStyle = {
@@ -52,16 +68,11 @@ function Booking() {
   };
 
   return (
-    <div>
-      {/* 🌍 TITLE */}
+    <div style={{ animation: "fadeIn 0.6s ease-in" }}>
       <div style={{ textAlign: "center", marginBottom: "30px" }}>
         <h1 style={{ color: "#f1f5f9" }}>🌍 WanderNest</h1>
-        <p style={{ color: "#94a3b8" }}>
-          Book your dream destination with ease ✈️
-        </p>
       </div>
 
-      {/* 📋 FORM */}
       <form
         onSubmit={handleSubmit}
         style={{
@@ -74,60 +85,29 @@ function Booking() {
       >
         <h2 style={{ color: "#f1f5f9" }}>Booking Details 📅</h2>
 
-        {/* NAME */}
         <label style={labelStyle}>Name</label>
-        <input
-          placeholder="Enter your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          style={inputStyle}
-        />
+        <input value={name} onChange={(e) => setName(e.target.value)} style={inputStyle} />
 
-        {/* FROM DATE */}
         <label style={labelStyle}>From</label>
-        <input
-          type="date"
-          value={fromDate}
-          onChange={(e) => setFromDate(e.target.value)}
-          style={inputStyle}
-        />
+        <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} style={inputStyle} />
 
-        {/* TO DATE */}
         <label style={labelStyle}>To</label>
-        <input
-          type="date"
-          value={toDate}
-          onChange={(e) => setToDate(e.target.value)}
-          style={inputStyle}
-        />
+        <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} style={inputStyle} />
 
-        {/* PEOPLE */}
         <label style={labelStyle}>Number of People</label>
-        <input
-          placeholder="Enter number of people"
-          type="number"
-          value={people}
-          onChange={(e) => setPeople(e.target.value)}
-          style={inputStyle}
-        />
+        <input type="number" value={people} onChange={(e) => setPeople(e.target.value)} style={inputStyle} />
 
-        {/* ERROR */}
-        {error && (
-          <p style={{ color: "#ef4444", fontSize: "0.9rem" }}>{error}</p>
-        )}
+        {error && <p style={{ color: "#ef4444" }}>{error}</p>}
 
-        {/* BUTTON */}
-        <button
-          style={{
-            padding: "10px",
-            backgroundColor: "#16a34a",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            width: "100%",
-            cursor: "pointer",
-          }}
-        >
+        <button style={{ 
+          padding: "10px", 
+          backgroundColor: "#16a34a", 
+          color: "white", 
+          width: "100%", 
+          borderRadius: "8px",
+          border: "none",
+          boxSizing: "border-box"
+          }}>
           Confirm Booking
         </button>
       </form>

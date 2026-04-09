@@ -14,14 +14,12 @@ function SearchPage() {
   const location = useLocation();
   const dropdownRef = useRef();
 
-  // ✅ Auto-fill from URL
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     const dest = query.get("destination");
     if (dest) setDestination(dest);
   }, [location]);
 
-  // ✅ Close dropdown on outside click
   useEffect(() => {
     const handleClick = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -32,7 +30,6 @@ function SearchPage() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  // 🔍 Handle typing
   const handleChange = (e) => {
     const value = e.target.value;
     setDestination(value);
@@ -45,7 +42,6 @@ function SearchPage() {
     setFiltered(results);
   };
 
-  // 🚀 Submit
   const handleSearch = (e) => {
     e.preventDefault();
 
@@ -69,7 +65,6 @@ function SearchPage() {
     backgroundColor: "#0f172a",
     color: "white",
     boxSizing: "border-box",
-    outline: "none",
   };
 
   const labelStyle = {
@@ -80,8 +75,7 @@ function SearchPage() {
   };
 
   return (
-    <div>
-      {/* 🌍 TITLE */}
+    <div style={{ animation: "fadeIn 0.6s ease-in" }}>
       <div style={{ textAlign: "center", marginBottom: "30px" }}>
         <h1 style={{ color: "#f1f5f9" }}>🌍 WanderNest</h1>
         <p style={{ color: "#94a3b8" }}>
@@ -89,7 +83,6 @@ function SearchPage() {
         </p>
       </div>
 
-      {/* 📋 FORM */}
       <form
         onSubmit={handleSearch}
         style={{
@@ -107,32 +100,19 @@ function SearchPage() {
           <label style={labelStyle}>Destination</label>
 
           <input
-            placeholder="Enter Destination"
             value={destination}
             onChange={handleChange}
+            placeholder="Enter Destination"
             style={inputStyle}
           />
 
           {showDropdown && (
-            <div
-              style={{
-                position: "absolute",
-                width: "100%",
-                backgroundColor: "#1e293b",
-                border: "1px solid #334155",
-                borderRadius: "8px",
-                zIndex: 10,
-              }}
-            >
+            <div style={{ position: "absolute", width: "100%", backgroundColor: "#1e293b" }}>
               {filtered.length > 0 ? (
                 filtered.map((item) => (
                   <div
                     key={item.id}
-                    style={{
-                      padding: "10px",
-                      cursor: "pointer",
-                      color: "white",
-                    }}
+                    style={{ padding: "10px", cursor: "pointer", color: "white" }}
                     onClick={() => {
                       setDestination(item.name);
                       setShowDropdown(false);
@@ -150,47 +130,17 @@ function SearchPage() {
           )}
         </div>
 
-        {/* FROM DATE */}
-        <div>
-          <label style={labelStyle}>From</label>
+        {/* FROM */}
+        <label style={labelStyle}>From</label>
+        <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} style={inputStyle} />
 
-          <input
-            type="date"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-            style={inputStyle}
-          />
-        </div>
+        {/* TO */}
+        <label style={labelStyle}>To</label>
+        <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} style={inputStyle} />
 
-        {/* TO DATE */}
-        <div>
-          <label style={labelStyle}>To</label>
+        {error && <p style={{ color: "#ef4444" }}>{error}</p>}
 
-          <input
-            type="date"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-            style={inputStyle}
-          />
-        </div>
-
-        {/* ERROR */}
-        {error && (
-          <p style={{ color: "#ef4444", fontSize: "0.9rem" }}>{error}</p>
-        )}
-
-        {/* BUTTON */}
-        <button
-          style={{
-            padding: "10px",
-            backgroundColor: "#2563eb",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            width: "100%",
-            cursor: "pointer",
-          }}
-        >
+        <button style={{ padding: "10px", backgroundColor: "#2563eb", color: "white", width: "100%" }}>
           Search Packages
         </button>
       </form>

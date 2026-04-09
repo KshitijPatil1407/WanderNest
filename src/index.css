@@ -86,3 +86,14 @@ input {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
