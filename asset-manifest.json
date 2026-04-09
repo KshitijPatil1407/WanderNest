@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/WanderNest/static/css/main.cbfcef70.css",
+    "main.js": "/WanderNest/static/js/main.638d587e.js",
+    "static/js/453.cab24646.chunk.js": "/WanderNest/static/js/453.cab24646.chunk.js",
+    "static/media/goa.jpeg": "/WanderNest/static/media/goa.864f766d0b50822cfa29.jpeg",
+    "static/media/mumbai.jpeg": "/WanderNest/static/media/mumbai.ad136324e23af9e7d204.jpeg",
+    "static/media/kashmir.webp": "/WanderNest/static/media/kashmir.1097596c10cf4a766ca5.webp",
+    "static/media/kerala.jpeg": "/WanderNest/static/media/kerala.3fad12fa546a4164d6b1.jpeg",
+    "static/media/jaipur.jpeg": "/WanderNest/static/media/jaipur.c1a12eedf8cda93865e0.jpeg",
+    "static/media/delhi.jpeg": "/WanderNest/static/media/delhi.05931e3ecfd6bc8d508f.jpeg",
+    "static/media/manali.jpeg": "/WanderNest/static/media/manali.ef490db789aed6ec4803.jpeg",
+    "static/media/ooty.jpg": "/WanderNest/static/media/ooty.0d52844b4a997031a2f0.jpg",
+    "static/media/andaman.jpeg": "/WanderNest/static/media/andaman.95deab24f299965eb806.jpeg",
+    "index.html": "/WanderNest/index.html",
+    "main.cbfcef70.css.map": "/WanderNest/static/css/main.cbfcef70.css.map",
+    "main.638d587e.js.map": "/WanderNest/static/js/main.638d587e.js.map",
+    "453.cab24646.chunk.js.map": "/WanderNest/static/js/453.cab24646.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cbfcef70.css",
+    "static/js/main.638d587e.js"
+  ]
+}
