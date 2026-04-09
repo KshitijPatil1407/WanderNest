@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/WanderNest/static/css/main.d08162c9.css",
-    "main.js": "/WanderNest/static/js/main.cae04afd.js",
+    "main.js": "/WanderNest/static/js/main.f3482524.js",
     "static/js/453.cab24646.chunk.js": "/WanderNest/static/js/453.cab24646.chunk.js",
     "static/media/goa.jpeg": "/WanderNest/static/media/goa.864f766d0b50822cfa29.jpeg",
     "static/media/mumbai.jpeg": "/WanderNest/static/media/mumbai.ad136324e23af9e7d204.jpeg",
@@ -14,11 +14,11 @@
     "static/media/andaman.jpeg": "/WanderNest/static/media/andaman.95deab24f299965eb806.jpeg",
     "index.html": "/WanderNest/index.html",
     "main.d08162c9.css.map": "/WanderNest/static/css/main.d08162c9.css.map",
-    "main.cae04afd.js.map": "/WanderNest/static/js/main.cae04afd.js.map",
+    "main.f3482524.js.map": "/WanderNest/static/js/main.f3482524.js.map",
     "453.cab24646.chunk.js.map": "/WanderNest/static/js/453.cab24646.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d08162c9.css",
-    "static/js/main.cae04afd.js"
+    "static/js/main.f3482524.js"
   ]
 }
