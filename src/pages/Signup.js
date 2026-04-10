@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 function Signup() {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
   const handleSignup = (e) => {
@@ -15,22 +14,25 @@ function Signup() {
       return;
     }
 
-    // get existing users
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    // ✅ get existing users
+    let users = JSON.parse(localStorage.getItem("users"));
 
-    // check duplicate
-    const exists = users.find((u) => u === username);
+    if (!users) {
+      users = [];
+    }
 
-    if (exists) {
+    // ✅ check duplicate
+    if (users.includes(username)) {
       setError("⚠ Username already exists");
       return;
     }
 
-    // save new user
+    // ✅ save user
     users.push(username);
     localStorage.setItem("users", JSON.stringify(users));
 
-    alert("✅ Signup successful! Please login");
+    alert("Signup successful!");
+
     navigate("/login");
   };
 
@@ -42,7 +44,10 @@ function Signup() {
         <input
           placeholder="Enter Username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            setUsername(e.target.value);
+            setError("");
+          }}
           style={{
             width: "100%",
             padding: "10px",

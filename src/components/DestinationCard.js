@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function DestinationCard({ place }) {
+  const navigate = useNavigate();
+
   return (
     <div
       style={{
@@ -22,29 +24,37 @@ function DestinationCard({ place }) {
       />
 
       <div style={{ padding: "16px" }}>
-        <h3 style={{ color: "#f1f5f9", margin: "0 0 8px" }}>
-          {place.name}
-        </h3>
+        <h3 style={{ color: "#f1f5f9" }}>{place.name}</h3>
 
         <p style={{ color: "#22c55e", fontWeight: "bold" }}>
           ₹{place.price}
         </p>
 
+        {/* DETAILS */}
         <Link to={`/destination/${place.id}`}>
-          <button
-            style={{
-              marginTop: "10px",
-              padding: "10px 15px",
-              borderRadius: "8px",
-              border: "none",
-              backgroundColor: "#2563eb",
-              color: "white",
-              cursor: "pointer",
-            }}
-          >
+          <button style={{ marginTop: "10px" }}>
             View Details
           </button>
         </Link>
+
+        {/* 🔥 NEW BOOK BUTTON */}
+        <button
+          onClick={() =>
+            navigate(`/booking?destination=${place.name}`)
+          }
+          style={{
+            marginTop: "10px",
+            padding: "10px",
+            backgroundColor: "#16a34a",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            width: "100%",
+            cursor: "pointer",
+          }}
+        >
+          Book Now
+        </button>
       </div>
     </div>
   );

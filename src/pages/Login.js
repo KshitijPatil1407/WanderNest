@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -17,6 +16,15 @@ function Login() {
       return;
     }
 
+    // ✅ CHECK IF USER EXISTS
+    const exists = users.includes(username);
+
+    if (!exists) {
+      setError("❌ User not found. Please signup first");
+      return;
+    }
+
+    // ✅ LOGIN SUCCESS
     localStorage.setItem("user", username);
     navigate("/");
   };
@@ -29,7 +37,10 @@ function Login() {
         <input
           placeholder="Enter Username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            setUsername(e.target.value);
+            setError(""); // ✅ clear error while typing
+          }}
           style={{
             width: "100%",
             padding: "10px",
